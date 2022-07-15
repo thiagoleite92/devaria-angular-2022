@@ -7,20 +7,18 @@ import { AutenticacaoService } from 'src/app/compartilhado/autenticacao/autentic
 @Component({
   selector: 'app-cabecalho',
   templateUrl: './cabecalho.component.html',
-  styleUrls: ['./cabecalho.component.scss']
+  styleUrls: ['./cabecalho.component.scss'],
 })
 export class CabecalhoComponent implements OnInit {
-
   public termoPesquisado: string = '';
-  public resultadoDaPesquisa: Array<UsuarioDevagram> =  [];
+  public resultadoDaPesquisa: Array<UsuarioDevagram> = [];
   constructor(
     private router: Router,
     private apiUsuarioDevagram: DevagramUsuarioApiService,
     private servicoAutenticacao: AutenticacaoService
-  ) { }
+  ) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   public irParaHome() {
     this.router.navigateByUrl('/');
@@ -33,12 +31,13 @@ export class CabecalhoComponent implements OnInit {
     }
 
     try {
-      const usuariosRetornados = await this.apiUsuarioDevagram.pesquisarUsuarios(
-        this.termoPesquisado
-      );
+      const usuariosRetornados =
+        await this.apiUsuarioDevagram.pesquisarUsuarios(this.termoPesquisado);
 
       const usuarioLogado = this.servicoAutenticacao.obterUsuarioLogado();
-      this.resultadoDaPesquisa = usuariosRetornados.filter(ur => ur._id !== usuarioLogado?.id);
+      this.resultadoDaPesquisa = usuariosRetornados.filter(
+        (ur) => ur._id !== usuarioLogado?.id
+      );
     } catch (e: any) {
       if (e?.status !== 400) {
         alert(e?.error.erro || 'Erro ao pesquisar usuarios!');
@@ -48,5 +47,7 @@ export class CabecalhoComponent implements OnInit {
 
   public irParaOPerfilDoUsuario(idUsuario: string): void {
     this.router.navigate(['perfil', idUsuario]);
+    this.termoPesquisado = '';
+    this.resultadoDaPesquisa = [];
   }
 }

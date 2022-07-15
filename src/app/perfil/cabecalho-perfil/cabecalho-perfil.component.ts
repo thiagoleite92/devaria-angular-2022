@@ -2,6 +2,7 @@ import { DevagramUsuarioApiService } from 'src/app/compartilhado/servicos/devagr
 import { Router } from '@angular/router';
 import { UsuarioDevagram } from './../../compartilhado/tipos/usuario-devagram.type';
 import { Component, Input, OnInit } from '@angular/core';
+import { AutenticacaoService } from 'src/app/compartilhado/autenticacao/autenticacao.service';
 
 @Component({
   selector: 'app-cabecalho-perfil',
@@ -10,12 +11,18 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class CabecalhoPerfilComponent implements OnInit {
   @Input() usuario: UsuarioDevagram | null = null;
+  public estaPerfilPessoal: boolean = false;
   constructor(
     private router: Router,
-    private servicoUsuario: DevagramUsuarioApiService
+    private servicoUsuario: DevagramUsuarioApiService,
+    private servicoAutenticacao: AutenticacaoService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (this.router.url === '/perfil/pessoal') {
+      this.estaPerfilPessoal = true;
+    }
+  }
 
   public voltarParaHome() {
     this.router.navigateByUrl('/');
@@ -36,10 +43,26 @@ export class CabecalhoPerfilComponent implements OnInit {
   }
 
   public obterTextoBotaoPrincipal(): string {
-    return this.usuario?.segueEsseUsuario ? 'Desseguir' : 'Seguir';
+    if (this.estaPerfilPessoal) {
+      return 'Editar Perfil';
+    }
+
+    if (this.usuario?.segueEsseUsuario) {
+      return 'Desseguir';
+    }
+
+    return 'Seguir';
   }
 
   public obterCorBotaoPrincipal(): string {
-    return this.usuario?.segueEsseUsuario ? 'outline' : 'primaria';
+    if (this.usuario?.segueEsseUsuario || this.estaPerfilPessoal) {
+      return 'outline';
+    }
+
+    return 'primaria';
+  }
+
+  public logout(): void {
+    this.servicoAutenticacao.logout();
   }
 }

@@ -5,9 +5,17 @@
       alt="Seta Esquerda"
       class="mobile"
       (click)="voltarParaHome()"
+      *ngIf="!estaPerfilPessoal"
     />
 
     <h3>{{ usuario?.nome }}</h3>
+
+    <img
+      src="assets/imagens/logout.svg"
+      alt="Icone Logout"
+      (click)="logout()"
+      *ngIf="estaPerfilPessoal"
+    />
   </div>
 
   <hr class="linhaHorizontal" />
