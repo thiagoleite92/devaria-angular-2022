@@ -30,7 +30,12 @@
           <span>Seguindo</span>
         </div>
       </div>
-      <app-botao texto="Seguir" classeCss="btnCabecalhoPerfil"></app-botao>
+      <app-botao
+        [texto]="obterTextoBotaoPrincipal()"
+        classeCss="btnCabecalhoPerfil"
+        [cor]="obterCorBotaoPrincipal()"
+        (click)="alternarSeguir()"
+      ></app-botao>
     </div>
   </div>
 </div>
