@@ -28,18 +28,13 @@ export class CabecalhoPerfilComponent implements OnInit {
     this.router.navigateByUrl('/');
   }
 
-  public async alternarSeguir(): Promise<void> {
-    if (!this.usuario) {
+  public async manipularCliqueBotaoPrincipal(): Promise<void> {
+    if (this.estaPerfilPessoal) {
+      this.redirecionarParaTelaDeEdicaoPerfil();
       return;
     }
 
-    try {
-      console.log(this.usuario?._id);
-      await this.servicoUsuario.alternarSeguir(this.usuario?._id);
-      this.usuario.segueEsseUsuario = !this.usuario.segueEsseUsuario;
-    } catch (e: any) {
-      alert(e.error?.erro || 'Erro ao seguir/desseguir');
-    }
+    await this.alternarSeguir();
   }
 
   public obterTextoBotaoPrincipal(): string {
@@ -64,5 +59,23 @@ export class CabecalhoPerfilComponent implements OnInit {
 
   public logout(): void {
     this.servicoAutenticacao.logout();
+  }
+
+  private async alternarSeguir() {
+    if (!this.usuario) {
+      return;
+    }
+
+    try {
+      console.log(this.usuario?._id);
+      await this.servicoUsuario.alternarSeguir(this.usuario?._id);
+      this.usuario.segueEsseUsuario = !this.usuario.segueEsseUsuario;
+    } catch (e: any) {
+      alert(e.error?.erro || 'Erro ao seguir/desseguir');
+    }
+  }
+
+  private redirecionarParaTelaDeEdicaoPerfil(): void {
+    this.router.navigateByUrl('perfil/pessoal/editar');
   }
 }

@@ -1,0 +1,28 @@
+<div class="layoutInterno">
+  <app-cabecalho class="desktop"></app-cabecalho>
+
+  <div class="conteudoInterno conteudoDesktop">
+    <div class="containerEdicaoPerfil">
+      <div class="conteudoEdicaoPerfil">
+        <app-cabecalho-com-acoes
+          textoAcaoEsquerda="Cancelar"
+          titulo="Editar Perfil"
+          textoAcaoDireita="Concluir"
+          (aoClicarAcaoEsquerda)="voltarParaHome()"
+          (aoClicarAcaoDireita)="atualizarPerfil()"
+        ></app-cabecalho-com-acoes>
+
+        <div class="edicaoAvatar">
+          <app-upload-imagem
+            [referenciaFormulario]="obterReferenciaInput('file')"
+            [imagemPrevisualizacao]="usuarioLogado?.avatar"
+          >
+            <span>Alterar foto Perfil</span></app-upload-imagem
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <app-rodape></app-rodape>
+</div>
