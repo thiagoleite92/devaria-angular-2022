@@ -1,3 +1,4 @@
+import { ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -17,7 +18,8 @@ import { EditarPerfilComponent } from './editar-perfil/editar-perfil.component';
   imports: [
     CommonModule,
     PerfilRoutingModule,
-    CompartilhadoModule
+    CompartilhadoModule,
+    ReactiveFormsModule
   ]
 })
 export class PerfilModule { }

@@ -47,7 +47,5 @@ export class CabecalhoComponent implements OnInit {
 
   public irParaOPerfilDoUsuario(idUsuario: string): void {
     this.router.navigate(['perfil', idUsuario]);
-    this.termoPesquisado = '';
-    this.resultadoDaPesquisa = [];
   }
 }

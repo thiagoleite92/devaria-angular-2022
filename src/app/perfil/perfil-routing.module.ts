@@ -5,12 +5,12 @@ import { PerfilComponent } from './perfil.component';
 
 const routes: Routes = [
   {
-    path: ':idUsuario',
-    component: PerfilComponent,
-  },
-  {
     path: 'pessoal/editar',
     component: EditarPerfilComponent,
+  },
+  {
+    path: ':idUsuario',
+    component: PerfilComponent,
   },
 ];
 

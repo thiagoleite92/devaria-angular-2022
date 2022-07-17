@@ -18,7 +18,7 @@
       font-family: var(--fontBold);
       color: var(--cinza4);
       font-size: 16px;
-      margin: 0px;
+      margin: 0;
     }
   }
 
@@ -73,7 +73,6 @@
 
           .numero {
             strong {
-              font-family: var(--fontBold);
               font-size: 18px;
             }
 

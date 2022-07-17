@@ -1,22 +1,24 @@
-import { DevagramUsuarioApiService } from 'src/app/compartilhado/servicos/devagram-usuario-api.service';
+import { AutenticacaoService } from 'src/app/compartilhado/autenticacao/autenticacao.service';
 import { Router } from '@angular/router';
 import { UsuarioDevagram } from './../../compartilhado/tipos/usuario-devagram.type';
 import { Component, Input, OnInit } from '@angular/core';
-import { AutenticacaoService } from 'src/app/compartilhado/autenticacao/autenticacao.service';
+import { DevagramUsuarioApiService } from 'src/app/compartilhado/servicos/devagram-usuario-api.service';
 
 @Component({
   selector: 'app-cabecalho-perfil',
   templateUrl: './cabecalho-perfil.component.html',
-  styleUrls: ['./cabecalho-perfil.component.scss'],
+  styleUrls: ['./cabecalho-perfil.component.scss']
 })
 export class CabecalhoPerfilComponent implements OnInit {
+
   @Input() usuario: UsuarioDevagram | null = null;
   public estaPerfilPessoal: boolean = false;
+
   constructor(
     private router: Router,
     private servicoUsuario: DevagramUsuarioApiService,
     private servicoAutenticacao: AutenticacaoService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     if (this.router.url === '/perfil/pessoal') {
@@ -24,29 +26,36 @@ export class CabecalhoPerfilComponent implements OnInit {
     }
   }
 
-  public voltarParaHome() {
-    this.router.navigateByUrl('/');
-  }
-
   public async manipularCliqueBotaoPrincipal(): Promise<void> {
     if (this.estaPerfilPessoal) {
-      this.redirecionarParaTelaDeEdicaoPerfil();
+      this.redirecionarParaTelaDeEdicaoDePerfil();
       return;
     }
 
     await this.alternarSeguir();
   }
 
-  public obterTextoBotaoPrincipal(): string {
-    if (this.estaPerfilPessoal) {
-      return 'Editar Perfil';
+  public redirecionarParaTelaDeEdicaoDePerfil(): void {
+    this.router.navigateByUrl('/perfil/pessoal/editar');
+  }
+
+  private async alternarSeguir() {
+    // TODO: atualizar a quantidade de seguidores
+    
+    if (!this.usuario) {
+      return;
     }
 
-    if (this.usuario?.segueEsseUsuario) {
-      return 'Desseguir';
+    try {
+      await this.servicoUsuario.alternarSeguir(this.usuario._id);
+      this.usuario.segueEsseUsuario = !this.usuario.segueEsseUsuario;
+    } catch (e: any) {
+      alert(e.error?.erro || 'Erro ao seguir/deixar de seguir o usuário!');
     }
+  }
 
-    return 'Seguir';
+  public voltarParaHome() {
+    this.router.navigateByUrl('/');
   }
 
   public obterCorBotaoPrincipal(): string {
@@ -57,25 +66,20 @@ export class CabecalhoPerfilComponent implements OnInit {
     return 'primaria';
   }
 
+  public obterTextoBotaoPrincipal(): string {
+    // TODO: corrigir bug da exibição do texto errado do botão
+    if (this.estaPerfilPessoal) {
+      return 'Editar perfil';
+    }
+
+    if (this.usuario?.segueEsseUsuario) {
+      return 'Deixar de seguir';
+    }
+
+    return 'Seguir';
+  }
+
   public logout(): void {
     this.servicoAutenticacao.logout();
-  }
-
-  private async alternarSeguir() {
-    if (!this.usuario) {
-      return;
-    }
-
-    try {
-      console.log(this.usuario?._id);
-      await this.servicoUsuario.alternarSeguir(this.usuario?._id);
-      this.usuario.segueEsseUsuario = !this.usuario.segueEsseUsuario;
-    } catch (e: any) {
-      alert(e.error?.erro || 'Erro ao seguir/desseguir');
-    }
-  }
-
-  private redirecionarParaTelaDeEdicaoPerfil(): void {
-    this.router.navigateByUrl('perfil/pessoal/editar');
   }
 }

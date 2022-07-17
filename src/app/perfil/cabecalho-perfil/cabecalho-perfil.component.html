@@ -1,49 +1,52 @@
 <div class="cabecalhoPerfil conteudoDesktop">
-  <div class="acoesCabecalhoPerfil">
-    <img
-      src="assets/imagens/setaEsquerda.svg"
-      alt="Seta Esquerda"
-      class="mobile"
-      (click)="voltarParaHome()"
-      *ngIf="!estaPerfilPessoal"
-    />
+    <div class="acoesCabecalhoPerfil">
+        <img
+            src="assets/imagens/setaEsquerda.svg"
+            alt="Seta Esquerda"
+            class="mobile"
+            (click)="voltarParaHome()"
+            *ngIf="!estaPerfilPessoal"
+        />
 
-    <h3>{{ usuario?.nome }}</h3>
+        <h3>{{ usuario?.nome }}</h3>
 
-    <img
-      src="assets/imagens/logout.svg"
-      alt="Icone Logout"
-      (click)="logout()"
-      *ngIf="estaPerfilPessoal"
-    />
-  </div>
-
-  <hr class="linhaHorizontal" />
-
-  <div class="estatisticas">
-    <app-avatar [src]="usuario?.avatar" classeCss="avatarPerfil"></app-avatar>
-
-    <div class="conteudoEstatisticas">
-      <div class="numeros">
-        <div class="numero">
-          <strong>{{ usuario?.publicacoes }}</strong>
-          <span>Publicações</span>
-        </div>
-        <div class="numero">
-          <strong>{{ usuario?.seguidores }}</strong>
-          <span>Seguidores</span>
-        </div>
-        <div class="numero">
-          <strong>{{ usuario?.seguindo }}</strong>
-          <span>Seguindo</span>
-        </div>
-      </div>
-      <app-botao
-        [texto]="obterTextoBotaoPrincipal()"
-        classeCss="btnCabecalhoPerfil"
-        [cor]="obterCorBotaoPrincipal()"
-        (click)="manipularCliqueBotaoPrincipal()"
-      ></app-botao>
+        <img
+            src="assets/imagens/logout.svg"
+            alt="Icone Logout"
+            (click)="logout()"
+            *ngIf="estaPerfilPessoal"
+        />
     </div>
-  </div>
+
+    <hr class="linhaHorizontal" />
+
+    <div class="estatisticas">
+        <app-avatar
+            [src]="usuario?.avatar"
+            classeCss="avatarPerfil"></app-avatar>
+
+        <div class="conteudoEstatisticas">
+            <div class="numeros">
+                <div class="numero">
+                    <strong>{{ usuario?.publicacoes }}</strong>
+                    <span>Publicações</span>
+                </div>
+                <div class="numero">
+                    <strong>{{ usuario?.seguidores }}</strong>
+                    <span>Seguidores</span>
+                </div>
+                <div class="numero">
+                    <strong>{{ usuario?.seguindo }}</strong>
+                    <span>Seguindo</span>
+                </div>
+            </div>
+
+            <app-botao
+                classeCss="btnCabecalhoPerfil"
+                [cor]="obterCorBotaoPrincipal()"
+                [texto]="obterTextoBotaoPrincipal()"
+                (click)="manipularCliqueBotaoPrincipal()"
+            ></app-botao>
+        </div>
+    </div>
 </div>

@@ -1,26 +1,26 @@
 <div class="cabecalhoComAcoes">
   <img
-    [src]="srcImagemEsquerda"
     *ngIf="srcImagemEsquerda"
+    [src]="srcImagemEsquerda"
     alt="Icone Esquerda"
     (click)="aoClicarAcaoEsquerda.emit()"
   />
 
   <span
-    class="textoAcaoEsquerda"
     *ngIf="textoAcaoEsquerda"
+    class="textoAcaoEsquerda"
     (click)="aoClicarAcaoEsquerda.emit()"
   >
-    {{ textoAcaoEsquerda }}</span
-  >
+    {{ textoAcaoEsquerda }}
+  </span>
 
   <h3>{{ titulo }}</h3>
 
   <button
     type="button"
     class="btnAcaoDireita"
-    (click)="aoClicarAcaoDireita.emit()"
     [disabled]="desabilitarAcaoDireita"
+    (click)="aoClicarAcaoDireita.emit()"
   >
     {{ textoAcaoDireita }}
   </button>

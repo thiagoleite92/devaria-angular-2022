@@ -51,8 +51,6 @@ export class FeedComponent implements OnInit, OnChanges {
 
       const postagensApi = await this.servicoFeed.carregarPostagens(idUsuario);
 
-      console.log(postagensApi);
-
       this.postagens = postagensApi.map(
         (postagem) =>
           ({

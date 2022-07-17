@@ -24,6 +24,15 @@ export class PostagemComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  public obterUrlPerfil(): string {
+    let idUsuarioPostagem = this.postagem.idUsuario;
+    if (idUsuarioPostagem === this.usuarioLogado?.id) {
+      idUsuarioPostagem = 'pessoal';
+    }
+
+    return '/perfil/' + idUsuarioPostagem;
+  }
+
   public exibirDescricaoCompleta() {
     this.limiteCaracteresDescricao = 99999999;
   }
@@ -98,15 +107,5 @@ export class PostagemComponent implements OnInit {
       !this.estaFazendoRequisicaoParaBackend &&
       this.comentarioAtual.trim().length >= 3
     );
-  }
-
-  public obterUrlPerfil(): string {
-    let idUsuarioPostagem = this.postagem.idUsuario;
-
-    if (idUsuarioPostagem === this.usuarioLogado?.id) {
-      idUsuarioPostagem = 'pessoal';
-    }
-
-    return '/perfil/' + idUsuarioPostagem;
   }
 }

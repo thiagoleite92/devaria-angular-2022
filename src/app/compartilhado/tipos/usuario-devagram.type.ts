@@ -3,8 +3,8 @@ export type UsuarioDevagram = {
   nome: string;
   email: string;
   avatar: string;
+  segueEsseUsuario: boolean;
   publicacoes: number;
   seguidores: number;
   seguindo: number;
-  segueEsseUsuario: boolean;
 };

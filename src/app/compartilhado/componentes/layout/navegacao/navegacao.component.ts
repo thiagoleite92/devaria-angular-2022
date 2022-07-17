@@ -20,7 +20,7 @@ export class NavegacaoComponent implements OnInit {
     },
     perfil: {
       img: 'usuario',
-      rotas: ['/perfil/pessoal', 'perfil/pessoal/editar'],
+      rotas: ['/perfil/pessoal', '/perfil/pessoal/editar'],
     },
   };
   constructor(private router: Router) {}

@@ -1,9 +1,13 @@
-import { AutenticacaoService } from 'src/app/compartilhado/autenticacao/autenticacao.service';
 import { UsuarioLogado } from './../../compartilhado/autenticacao/usuario-logado.type';
-import { Validators, AbstractControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import {
+  AbstractControl,
+  FormBuilder,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
+import { AutenticacaoService } from 'src/app/compartilhado/autenticacao/autenticacao.service';
 
 @Component({
   selector: 'app-editar-perfil',
@@ -11,15 +15,15 @@ import { FormGroup, FormBuilder } from '@angular/forms';
   styleUrls: ['./editar-perfil.component.scss'],
 })
 export class EditarPerfilComponent implements OnInit {
-  public usuarioLogado?: UsuarioLogado | null;
   public form: FormGroup;
-
+  public usuarioLogado?: UsuarioLogado | null;
   constructor(
     private router: Router,
     private fb: FormBuilder,
     private servicoAutenticacao: AutenticacaoService
   ) {
     this.usuarioLogado = this.servicoAutenticacao.obterUsuarioLogado();
+
     this.form = this.fb.group({
       file: [null],
       nome: [
@@ -40,6 +44,11 @@ export class EditarPerfilComponent implements OnInit {
   }
 
   public async atualizarPerfil(): Promise<void> {
-    console.log('atualizarPerfil');
+    // TODO: implementar a logica de integração
+    console.log('atuaizar perfil');
+  }
+
+  public limparInputNome() {
+    this.obterReferenciaInput('nome').setValue('');
   }
 }

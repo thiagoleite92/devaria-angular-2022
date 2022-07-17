@@ -1,59 +1,58 @@
-@import "../../../../assets/estilos/variaveis.scss";
+@import '../../../../assets/estilos/variaveis.scss';
 
 @mixin botaoPrimario {
-  color: var(--branco);
-  background-color: var(--corPrimaria);
+    color: var(--branco);
+    background-color: var(--corPrimaria);
 }
 
 @mixin botaoOutline {
-  background-color: var(--branco);
-  color: var(--corPrimaria);
-  border: 1px solid var(--corPrimaria);
+    background-color: var(--branco);
+    color: var(--corPrimaria);
+    border: 1px solid var(--corPrimaria);
 }
 
 .btn {
-  width: 100%;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
+    width: 100%;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
 
-  &.primaria {
-    @include botaoPrimario;
+    &.primaria {
+        @include botaoPrimario;
 
-    &:hover {
-      @include botaoOutline;
+        &:hover {
+            @include botaoOutline;
+        }
     }
-  }
 
-  &.outline {
-    @include botaoOutline;
+    &.outline {
+        @include botaoOutline;
 
-    &:hover {
-      @include botaoPrimario;
+        &:hover {
+            @include botaoPrimario;
+        }
     }
-  }
 
-  &:disabled {
-    opacity: 0.5;
-  }
+    &:disabled {
+        opacity: 0.5;
+    }
 
-  &.botaoPublico {
-    margin-top: 40px;
-    padding: 12px;
-    font-size: 16px;
-  }
+    &.botaoPublico {
+        margin-top: 40px;
+        padding: 12px;
+        font-size: 16px;
+    }
 
-  &.btnCabecalhoPerfil {
-    font-size: 12px;
-    padding: 8px 0px;
-    border-radius: 4px;
-  }
-
-  @media screen and (min-width: $breakpointDesktop) {
     &.btnCabecalhoPerfil {
-      font-size: 12px;
-      padding: 12px;
-      border-radius: 4px;
+        font-size: 12px;
+        padding: 8px;
+        border-radius: 4px;
     }
-  }
+
+    @media screen and (min-width: $breakpointDesktop) {
+        &.btnCabecalhoPerfil {
+            font-size: 16px;
+            padding: 12px;
+        }
+    }
 }
