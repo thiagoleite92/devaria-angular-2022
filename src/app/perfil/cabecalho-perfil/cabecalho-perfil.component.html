@@ -1,16 +1,16 @@
 <div class="cabecalhoPerfil conteudoDesktop">
     <div class="acoesCabecalhoPerfil">
-        <img
+        <img 
             src="assets/imagens/setaEsquerda.svg"
             alt="Seta Esquerda"
             class="mobile"
             (click)="voltarParaHome()"
             *ngIf="!estaPerfilPessoal"
         />
-
+    
         <h3>{{ usuario?.nome }}</h3>
 
-        <img
+        <img 
             src="assets/imagens/logout.svg"
             alt="Icone Logout"
             (click)="logout()"
@@ -23,7 +23,7 @@
     <div class="estatisticas">
         <app-avatar
             [src]="usuario?.avatar"
-            classeCss="avatarPerfil"></app-avatar>
+            classeCss="avatarPerfil bordaGradienteAvatar"></app-avatar>
 
         <div class="conteudoEstatisticas">
             <div class="numeros">

@@ -18,17 +18,19 @@ import { RodapeComponent } from './componentes/layout/rodape/rodape.component';
 import { NavegacaoComponent } from './componentes/layout/navegacao/navegacao.component';
 import { CabecalhoComAcoesComponent } from './componentes/cabecalho-com-acoes/cabecalho-com-acoes.component';
 
+
+
 @NgModule({
   providers: [
     {
       provide: 'DEVAGRAM_URL_API',
-      useValue: environment.devagramUrlApi,
+      useValue: environment.devagramUrlApi
     },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: DevagramApiInterceptador,
-      multi: true,
-    },
+      multi: true
+    }
   ],
   declarations: [
     BotaoComponent,
@@ -42,9 +44,14 @@ import { CabecalhoComAcoesComponent } from './componentes/cabecalho-com-acoes/ca
     CabecalhoComponent,
     RodapeComponent,
     NavegacaoComponent,
-    CabecalhoComAcoesComponent,
+    CabecalhoComAcoesComponent
   ],
-  imports: [CommonModule, FormsModule, RouterModule, HttpClientModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    RouterModule,
+    HttpClientModule
+  ],
   exports: [
     BotaoComponent,
     AvatarComponent,
@@ -55,7 +62,7 @@ import { CabecalhoComAcoesComponent } from './componentes/cabecalho-com-acoes/ca
     FeedComponent,
     CabecalhoComponent,
     RodapeComponent,
-    CabecalhoComAcoesComponent,
-  ],
+    CabecalhoComAcoesComponent
+  ]
 })
-export class CompartilhadoModule {}
+export class CompartilhadoModule { }

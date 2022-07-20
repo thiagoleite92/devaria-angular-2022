@@ -1,22 +1,23 @@
-<div
-  [ngClass]="['containerUploadImagem', classeCssContainer]"
-  (click)="inputArquivo.click()"
+<div [ngClass]="['containerUploadImagem', classeCssContainer]"
+    (click)="inputArquivo.click()"
+    (drop)="manipularDrop($event)"
+    (dragover)="manipularDragOver($event)"
 >
-  <div class="containerPrevisualizacao" *ngIf="imagemPrevisualizacao">
-    <img
-      [src]="imagemPrevisualizacao"
-      alt="Imagem pre visualizacao"
-      [class]="classeCssImagemPrevisualizacao"
+    <div class="containerPrevisualizacao" *ngIf="imagemPrevisualizacao">
+        <img
+            [src]="imagemPrevisualizacao"
+            alt="Imagem pre visualizacao"
+            [class]="classeCssImagemPrevisualizacao"
+        />
+    </div>
+
+    <ng-content></ng-content>
+
+    <input
+        type="file"
+        class="oculto"
+        accept="image/*"
+        (change)="trocarArquivo($event)"
+        #inputArquivo
     />
-  </div>
-
-  <ng-content></ng-content>
-
-  <input
-    type="file"
-    class="oculto"
-    accept="image/*"
-    (change)="trocarArquivo($event)"
-    #inputArquivo
-  />
 </div>
